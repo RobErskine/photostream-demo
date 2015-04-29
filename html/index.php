@@ -4,6 +4,9 @@
 $craftPath = '../craft';
 
 // Do not edit below this line
+// You cant tell me what to do
+include 'vendor/autoload.php';
+
 $path = rtrim($craftPath, '/').'/app/index.php';
 
 if (!is_file($path))

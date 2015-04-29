@@ -1,5 +1,7 @@
 <?php
 namespace Craft;
+use Redis;
+use SocketIO\Emitter;
 
 class SocketsPlugin extends BasePlugin
 {
@@ -44,5 +46,15 @@ class SocketsPlugin extends BasePlugin
     {
         //craft()->request->redirect(UrlHelper::getCpUrl('/casper/thanks/'));
     }
-
+	
+	public function init() {
+		craft()->on('entries.onSaveEntry', function($entry, $isNewEntry) {
+			if ($isNewEntry) {
+				$redis = new Redis(); // Using the Redis extension provided client
+				$redis->connect('127.0.0.1', '6379');
+				$emitter = new SocketIO\Emitter($redis);
+				$emitter->emit('new photo', json_encode($entry));
+			}
+		});
+	}
 }
