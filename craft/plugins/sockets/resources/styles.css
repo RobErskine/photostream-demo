@@ -1,0 +1,31 @@
+/* LESS color Variables */
+h1 small {
+  float: right;
+  font-size: .5em;
+  position: relative;
+  top: 10px;
+}
+.center {
+  text-align: center;
+}
+/* Craft plus tags - Feel free to remove*/
+.welcome h2 {
+  background: #da5a47;
+  color: #ffffff;
+  padding: 10px;
+}
+.welcome h2 a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+.thanks {
+  text-align: center;
+  display: block;
+}
+.thanks p {
+  font-size: .5em;
+  margin: 5px 0 0;
+  display: block;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.8);
+}
