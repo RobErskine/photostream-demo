@@ -1,1 +1,48 @@
 @import "partials/base";
+
+.logo{
+	@include border-radius(50%);
+	@include position(fixed, 25px auto auto 50%);
+	@include transform(translateX(-50%));
+	@include size(100px);
+}
+
+.gallery{
+	ul img{
+		width:100%;
+	}
+}
+
+body{
+	padding-bottom:40px;
+}
+
+.upload-photo{
+	background-color:#333;
+	@include position(fixed, auto 0px 0px 0px);
+	height:40px;
+	button{
+		@include border-radius(50%);
+		@include size(50px);
+		@extend %absolute-middle;
+	}
+	svg{
+		@include opacity(0);
+		@include size(0px);
+		@extend %default-transition;
+		@extend %absolute-middle;
+		margin-top:-2px;
+		padding:4px;
+		use{
+			fill:#333;
+		}
+	}
+	svg.active{
+		@include size(35px);
+		@include opacity(1);
+	}
+}
+
+.upload-photo-form{
+	display:none;
+}

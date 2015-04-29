@@ -52,12 +52,17 @@ i,em{
     font-style:italic;
 }
 
-input:focus, textarea:focus{
+input:focus, textarea:focus,button{
     outline:none;
 }
 
 button,input[type="submit"]{
     cursor:pointer;
+}
+
+button{
+    @include appearance(none);
+    border:none;
 }
 
 /*//////////////////////////////////////

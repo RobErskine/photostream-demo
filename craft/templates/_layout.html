@@ -20,12 +20,35 @@
         <![endif]-->
 
     </head>
-    <body>
-    	{% block content %}
+    <body class="gallery design-one">
+    	{% include '_svgdefs.html' %}
+
+        <img class="logo" src="/img/cmart.jpg">
+
+        {% block content %}
 			<p>not set up</p>
 		{% endblock %}
+
+        <div class="upload-photo">
+            <button class="upload">
+                <svg class="icon icon-camera active"><use xlink:href="#icon-camera"></use></svg>
+                <svg class="icon icon-spinner"><use xlink:href="#icon-camera"></use></svg>
+            </button>
+
+            <form method="post" accept-charset="UTF-8" class="upload-photo-form">
+                {{ getCsrfInput() }}
+                <input type="hidden" name="action" value="guestEntries/saveEntry">
+                <input type="hidden" name="redirect" value="success">
+                <input type="hidden" name="sectionId" value="3">
+
+                <input type="file" name="fields[eventPhoto]">
+
+                <input type="submit" value="Publish">
+            </form>
+        </div>
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="/js/vendor/jquery.js"><\/script>')</script>
+        <script src="/js/vendor/ajaxform.js"></script>
         <script src="/js/main.js"></script>
     </body>
 </html>
