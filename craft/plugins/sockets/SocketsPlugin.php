@@ -48,35 +48,38 @@ class SocketsPlugin extends BasePlugin
 
     public function init()
     {
-        craft()->on('assets.onBeforeUploadAsset', function (Event $event) {
-            $event->performAction = false;
-            $s3Client = S3Client::factory([
-                'credentials' => [
-                    'key'    => 'AKIAIUGVG473J3GWNYLA',
-                    'secret' => '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'
-                ]
-            ]);
-            $result = $s3Client->putObject([
-                'Bucket' => 'martinwedding',
-                'Key'    => $event->params['filename'],
-                'SourceFile' => $event->params['path'],
-                'ACL'          => 'public-read',
-            ]);
+        // craft()->on('assets.onBeforeUploadAsset', function (Event $event) {
+        //     $event->performAction = false;
+        //     $s3Client = S3Client::factory([
+        //         'credentials' => [
+        //             'key'    => 'AKIAIUGVG473J3GWNYLA',
+        //             'secret' => '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'
+        //         ]
+        //     ]);
+        //     $result = $s3Client->putObject([
+        //         'Bucket' => 'martinwedding',
+        //         'Key'    => $event->params['filename'],
+        //         'SourceFile' => $event->params['path'],
+        //         'ACL'          => 'public-read',
+        //     ]);
 
-            $entry = new EntryModel();
-            $entry->sectionId = 3;
-            // $entry->typeId    = 1;
-            $entry->authorId  = 1;
-            $entry->enabled   = true;
+        //     $entry = new EntryModel();
+        //     $entry->sectionId = 3;
+        //     // $entry->typeId    = 1;
+        //     $entry->authorId  = 1;
+        //     $entry->enabled   = true;
 
-            // $entry->getContent()->title = $event->params['filename'];
-            $entry->getContent()->eventPhotoLink = $result->toArray()['ObjectURL'];
+        //     $entry->getContent()->eventPhotoLink = $result->toArray()['ObjectURL'];
 
-            // $entry->setContentFromPost(array(
-            //     'body' => "<p>I can’t believe I literally just called this “Hello World!”.</p>",
-            // ));
+        //     $success = craft()->entries->saveEntry($entry);
+        // });
 
-            $success = craft()->entries->saveEntry($entry);
+        craft()->on('assets.onSaveAsset', function (Event $event) {
+            $asset = $event->params['asset'];
+            $redis = new \Redis(); // Using the Redis extension provided client
+            $redis->connect('127.0.0.1', '6379');
+            $emitter = new SocketIO\Emitter($redis);
+            $emitter->emit('photo', $asset->getUrl());
         });
     }
 }
