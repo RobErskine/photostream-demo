@@ -52,8 +52,8 @@ class SocketsPlugin extends BasePlugin
             $event->performAction = false;
             $s3Client = S3Client::factory([
                 'credentials' => [
-                    'key'    => 'AKIAIASBJUN4GRBIL7IA',
-                    'secret' => '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'
+                    'key'    => 'AKIAIUGVG473J3GWNYLA',
+                    'secret' => '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'
                 ]
             ]);
             $s3Client->putObject([
