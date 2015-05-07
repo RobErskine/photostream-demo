@@ -1,6 +1,7 @@
 <?php
 namespace Craft;
 use Aws\S3\S3Client;
+use SocketIO\Emitter;
 
 class SocketsPlugin extends BasePlugin
 {
@@ -46,6 +47,7 @@ class SocketsPlugin extends BasePlugin
         //craft()->request->redirect(UrlHelper::getCpUrl('/casper/thanks/'));
     }
 
+
     public function init()
     {
         // craft()->on('assets.onBeforeUploadAsset', function (Event $event) {
@@ -78,8 +80,9 @@ class SocketsPlugin extends BasePlugin
             $asset = $event->params['asset'];
             $redis = new \Redis(); // Using the Redis extension provided client
             $redis->connect('127.0.0.1', '6379');
-            $emitter = new SocketIO\Emitter($redis);
+            $emitter = new Emitter($redis);
             $emitter->emit('photo', $asset->getUrl());
+
         });
     }
 }

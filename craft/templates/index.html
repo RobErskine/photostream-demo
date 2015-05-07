@@ -3,7 +3,7 @@
 {% block content %}
 	<ul>
 		{% for entry in craft.entries.section('photos').find() %}
-			<li><img src="{{ entry.eventPhoto.first().getUrl }}" alt="{{ entry.title }}"></li>
+			{# <li><img src="{{ entry.eventPhoto.first().getUrl }}" alt="{{ entry.title }}"></li> #}
 		{% endfor %}
 	</ul>
 {% endblock %}
