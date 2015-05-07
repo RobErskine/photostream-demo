@@ -1,60 +1,66 @@
 <?php
 namespace Craft;
-use Redis;
-use SocketIO\Emitter;
+use Aws\S3\S3Client;
 
 class SocketsPlugin extends BasePlugin
 {
 
-	function getName()
-	{
-		return Craft::t('Sockets');
-	}
+    function getName()
+    {
+        return Craft::t('Sockets');
+    }
 
-	function getVersion()
-	{
-		return '1.0';
-	}
+    function getVersion()
+    {
+        return '1.0';
+    }
 
-	function getDeveloper()
-	{
-		return 'Rob Erskine';
-	}
+    function getDeveloper()
+    {
+        return 'Rob Erskine';
+    }
 
-	function getDeveloperUrl()
-	{
-		return 'http://roberskine.com';
-	}
+    function getDeveloperUrl()
+    {
+        return 'http://roberskine.com';
+    }
 
-	function hasCpSection()
+    function hasCpSection()
     {
         return true;
     }
-    
+
     public function registerCpRoutes()
     {
         return array(
 
-    	//user this area for custom CP routes
+        //user this area for custom CP routes
 
         );
 
-	}	
+    }
 
     // Thanks Page - Feel free to remove.
     public function onAfterInstall()
     {
         //craft()->request->redirect(UrlHelper::getCpUrl('/casper/thanks/'));
     }
-	
-	public function init() {
-		craft()->on('entries.onSaveEntry', function($entry, $isNewEntry) {
-			if ($isNewEntry) {
-				$redis = new Redis(); // Using the Redis extension provided client
-				$redis->connect('127.0.0.1', '6379');
-				$emitter = new SocketIO\Emitter($redis);
-				$emitter->emit('new photo', json_encode($entry));
-			}
-		});
-	}
+
+    public function init()
+    {
+        craft()->on('assets.onBeforeUploadAsset', function (Event $event) {
+            $event->performAction = false;
+            $s3Client = S3Client::factory([
+                'credentials' => [
+                    'key'    => 'AKIAIASBJUN4GRBIL7IA',
+                    'secret' => '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'
+                ]
+            ]);
+            $s3Client->putObject([
+                'Bucket' => 'martinwedding',
+                'Key'    => $event->params['filename'],
+                'SourceFile' => $event->params['path']
+            ]);
+        });
+    }
 }
