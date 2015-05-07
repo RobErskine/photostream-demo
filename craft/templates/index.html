@@ -1,13 +1,6 @@
 {% extends "_layout" %}
 
 {% block content %}
-    <script>
-        var socket = io();
-        socket.on('new photo', function(msg) {
-            console.log(msg);
-        });
-    </script>
-    
 	<ul>
 		{% for entry in craft.entries.section('photos').find() %}
 			<li><img src="{{ entry.eventPhoto.first().getUrl }}" alt="{{ entry.title }}"></li>
