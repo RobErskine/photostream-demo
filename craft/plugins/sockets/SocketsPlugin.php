@@ -56,11 +56,27 @@ class SocketsPlugin extends BasePlugin
                     'secret' => '2/CcoNqOhUnWwafaiv7GxBy9boFXwQ82I/FpyQlM'
                 ]
             ]);
-            $s3Client->putObject([
+            $result = $s3Client->putObject([
                 'Bucket' => 'martinwedding',
                 'Key'    => $event->params['filename'],
-                'SourceFile' => $event->params['path']
+                'SourceFile' => $event->params['path'],
+                'ACL'          => 'public-read',
             ]);
+
+            $entry = new EntryModel();
+            $entry->sectionId = 3;
+            // $entry->typeId    = 1;
+            $entry->authorId  = 1;
+            $entry->enabled   = true;
+
+            // $entry->getContent()->title = $event->params['filename'];
+            $entry->getContent()->eventPhotoLink = $result->data['ObjectURL'];
+
+            // $entry->setContentFromPost(array(
+            //     'body' => "<p>I can’t believe I literally just called this “Hello World!”.</p>",
+            // ));
+
+            $success = craft()->entries->saveEntry($entry);
         });
     }
 }
