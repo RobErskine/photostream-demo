@@ -82,7 +82,7 @@ class SocketsPlugin extends BasePlugin
             $redis->connect('127.0.0.1', '6379');
             $emitter = new Emitter($redis);
             $emitter->emit('photo', $asset->getUrl());
-
+            $redis->close();
         });
     }
 }
