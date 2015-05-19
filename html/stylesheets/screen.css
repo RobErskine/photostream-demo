@@ -153,7 +153,7 @@ button {
 }
 
 /* line 110, ../../build/sass/partials/_base.scss */
-.upload-photo svg {
+.upload-photo svg, .new-photos {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -256,6 +256,22 @@ body {
 /* line 46, ../../build/sass/screen.scss */
 .upload-photo-form {
   display: none;
+}
+
+/* line 50, ../../build/sass/screen.scss */
+.new-photos {
+  width: 100%;
+  height: 0px;
+  background-color: #1DBD03;
+  position: fixed;
+  top: auto;
+  right: 0px;
+  bottom: 40px;
+  left: 0px;
+}
+/* line 56, ../../build/sass/screen.scss */
+.new-photos.active {
+  height: 20px;
 }
 
 /*# sourceMappingURL=screen.css.map */

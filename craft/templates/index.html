@@ -1,9 +1,13 @@
 {% extends "_layout" %}
 
 {% block content %}
-	<ul>
-		{% for entry in craft.entries.section('photos').find() %}
-			{# <li><img src="{{ entry.eventPhoto.first().getUrl }}" alt="{{ entry.title }}"></li> #}
-		{% endfor %}
-	</ul>
+	<ul id="photos">
+        {% for photo in craft.entries.section('photos').find() %}
+            {% if photo.eventPhotoLink %}
+                <li><img src="{{photo.eventPhotoLink}}"></li>
+            {% elseif photo.eventPhoto.first() %}
+                <li><img src="{{photo.eventPhoto.first().getUrl()}}"></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
 {% endblock %}

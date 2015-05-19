@@ -23,8 +23,12 @@
     	{% include '_svgdefs.html' %}
 
         <img class="logo" src="/img/cmart.jpg">
-        <ul id="photos">
-        </ul>
+        
+        <div class="new-photos">
+            <div></div>
+            <button>load</button>
+        </div>
+
         {% block content %}
 			<p>not set up</p>
 		{% endblock %}
@@ -52,13 +56,45 @@
         <script src="/js/main.js"></script>
         <script>
         $(document).ready(function(){
-            var socket = io('http://45.55.245.33', {
+             var socket = io('http://45.55.245.33', {
+            //var socket = io('localhost:8000', {
                 transports: ['websocket']
             });
 
+            var newPhotosBox = $('.new-photos');
+            var newPhotos = [];
+
             socket.on('photo', function (data) {
-                $('#photos').append('<li><img src="' + data + '"></li>');
+                //$('#photos').prepend('<li><img src="' + data + '"></li>');
+                newPhotos.push(data);
             });
+
+            setInterval(function(){
+                if(newPhotos.length > 0){
+                    if(newPhotos.length === 1){
+                        newPhotosBox.find('div').html('<p>1 new photo</p>');
+                    }
+                    else{
+                        newPhotosBox.find('div').html('<p>'+newPhotos.length+' new photos')
+                    }
+                    newPhotosBox.addClass('active');
+                }
+                else{
+                    newPhotosBox.removeClass('active');
+                }
+            },500);
+
+            newPhotosBox.on('click',function(){
+                console.log(newPhotos);
+
+                for(i=0;i<newPhotos.length;i++){
+                    $('#photos').prepend('<li><img src="' + newPhotos[i] + '"></li>');
+                }
+                newPhotosBox.removeClass('active');
+
+                newPhotos = [];
+            });
+
         });
         </script>
     </body>
