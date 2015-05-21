@@ -10,6 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/stylesheets/screen.css" media="all">
         <link rel="stylesheet" href="/stylesheets/print.css" media="print">
         <script src="/js/vendor/modernizr.js"></script>
@@ -56,8 +57,8 @@
         <script src="/js/main.js"></script>
         <script>
         $(document).ready(function(){
-             var socket = io('http://45.55.245.33', {
-            //var socket = io('localhost:8000', {
+            //var socket = io('http://45.55.245.33', {
+            var socket = io('localhost:8000', {
                 transports: ['websocket']
             });
 

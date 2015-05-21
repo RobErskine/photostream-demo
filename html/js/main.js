@@ -16,7 +16,7 @@ $(function() {
     });
     var upload = $('.upload-photo input[type="file"]');
     upload.on("change", function() {
-        $('.upload-photo-form input[type="submit"]').click();
+        $(".upload-photo-form").submit();
     }), $("button.upload").on("click", function() {
         upload.click();
     }), $(".upload-photo-form").on("submit", function(event) {
