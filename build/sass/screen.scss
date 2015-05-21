@@ -1,10 +1,44 @@
 @import "partials/base";
 
-.logo{
-	@include border-radius(50%);
-	@include position(fixed, 25px auto auto 50%);
-	@include transform(translateX(-50%));
-	@include size(100px);
+body{
+	padding-bottom:40px;
+	background-color:#E6E6E6;
+	font-family:$font-sans;
+	overflow-x:hidden;
+}
+
+header{
+	background-color:$primary;
+	height:80px;
+	position:relative;
+	display:block;
+	z-index:9;
+	.logo{
+		@include border-radius(50%);
+		@include position(absolute, -8px auto auto -12px);
+		//@include transform(translateX(-50%));
+		@include size(100px);
+	}
+	div{
+		color:#fff;
+		@include position(absolute, 48% auto auto 100px);
+		@include transform(translateY(-50%));
+		h2{
+			font-size:22px;
+			font-weight:700;
+			margin-bottom:5px;
+		}
+		time{
+			font-family:$georgia;
+			font-style:italic;
+			font-size:18px;
+			sup{
+				font-size:.7em;
+				position:relative;
+				top:-.5em;
+			}
+		}
+	}
 }
 
 .gallery{
@@ -13,36 +47,54 @@
 	}
 }
 
-body{
-	padding-bottom:40px;
-	background-color:#E6E6E6;
-	font-family:$font-sans;
+@include keyframes(spinBaby){
+	0%{
+		@include transform(rotate(0deg));
+	}
+	100%{
+		@include transform(rotate(360deg));
+	}
 }
 
 .upload-photo{
-	background-color:#333;
+	background-color:$primary;
 	@include position(fixed, auto 0px 0px 0px);
-	height:55px;
+	height:45px;
 	button{
 		@include border-radius(50%);
-		@include size(65px);
+		@include size(60px);
 		@extend %absolute-middle;
-		background-color:#fff;
+		background-color:$secondary;
 	}
 	svg{
 		@include opacity(0);
 		@include size(0px);
-		@extend %default-transition;
-		@extend %absolute-middle;
-		margin-top:-2px;
+		position:relative;
+		top:-6px;
+		left:-4px;
 		padding:4px;
 		use{
-			fill:#333;
+			fill:#fff;
 		}
 	}
-	svg.active{
+	.icon-camera{
+		top:4px;
 		@include size(45px);
 		@include opacity(1);
+	}
+	.icon-spinner{
+		@include animation(spinBaby 1s linear infinite);
+	}
+	.upload.loading{
+		pointer-events:none;
+		.icon-camera{
+			@include size(0px);
+			@include opacity(1);
+		}
+		.icon-spinner{
+			@include size(45px);
+			@include opacity(1);
+		}
 	}
 }
 
@@ -56,29 +108,16 @@ body{
 	background-color:#009A25;
 	color:#fff;
 	font-size:15px;
-	z-index:2;
+	z-index:8;
 	overflow:hidden;
+	padding:0 12px;
+	text-align: center;
 	@include position(fixed, 0px 0px auto 0px);
 	@extend %default-transition;
 	@include clearfix();
 	&.active{
 		height:40px;
-		padding:12px;
-	}
-	div{
-		float:left;
-	}
-	button{
-		float:right;
-		@include appearance(none);
-		@include border-radius(2px);
-		background-color:darken(#009A25, 20%);
-		border:none;
-		color:#fff;
-		font-size: 15px;
-		padding: 7px 10px;
-		position: relative;
-		top: -7px;
+		padding:12px
 	}
 }
 

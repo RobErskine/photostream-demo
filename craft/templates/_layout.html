@@ -10,7 +10,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:600,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="/stylesheets/screen.css" media="all">
         <link rel="stylesheet" href="/stylesheets/print.css" media="print">
         <script src="/js/vendor/modernizr.js"></script>
@@ -23,11 +23,16 @@
     <body class="gallery design-one">
     	{% include '_svgdefs.html' %}
 
-        <img class="logo" src="/img/cmart.jpg">
+        <header>
+            <img class="logo" src="/img/cmart.jpg">
+            <div>
+                <h2>Mr &amp; Mrs Martin</h2>
+                <time>May 22<sup>nd</sup> 2015</time>
+            </div>
+        </header>
         
         <div class="new-photos">
             <div></div>
-            <button>load</button>
         </div>
 
         {% block content %}
@@ -37,7 +42,7 @@
         <div class="upload-photo">
             <button class="upload">
                 <svg class="icon icon-camera active"><use xlink:href="#icon-camera"></use></svg>
-                <svg class="icon icon-spinner"><use xlink:href="#icon-camera"></use></svg>
+                <svg class="icon icon-spinner"><use xlink:href="#icon-spinner"></use></svg>
             </button>
 
             <form method="post" accept-charset="UTF-8" class="upload-photo-form">
@@ -55,48 +60,5 @@
         <script>window.jQuery || document.write('<script src="/js/vendor/jquery.js"><\/script>')</script>
         <script src="/js/vendor/ajaxform.js"></script>
         <script src="/js/main.js"></script>
-        <script>
-        $(document).ready(function(){
-            //var socket = io('http://45.55.245.33', {
-            var socket = io('localhost:8000', {
-                transports: ['websocket']
-            });
-
-            var newPhotosBox = $('.new-photos');
-            var newPhotos = [];
-
-            socket.on('photo', function (data) {
-                //$('#photos').prepend('<li><img src="' + data + '"></li>');
-                newPhotos.push(data);
-            });
-
-            setInterval(function(){
-                if(newPhotos.length > 0){
-                    if(newPhotos.length === 1){
-                        newPhotosBox.find('div').html('<p>1 new photo</p>');
-                    }
-                    else{
-                        newPhotosBox.find('div').html('<p>'+newPhotos.length+' new photos')
-                    }
-                    newPhotosBox.addClass('active');
-                }
-                else{
-                    newPhotosBox.removeClass('active');
-                }
-            },500);
-
-            newPhotosBox.on('click',function(){
-                console.log(newPhotos);
-
-                for(i=0;i<newPhotos.length;i++){
-                    $('#photos').prepend('<li><img src="' + newPhotos[i] + '"></li>');
-                }
-                newPhotosBox.removeClass('active');
-
-                newPhotos = [];
-            });
-
-        });
-        </script>
     </body>
 </html>
