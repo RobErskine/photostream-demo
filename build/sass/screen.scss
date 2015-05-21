@@ -18,6 +18,7 @@ header{
 		@include position(absolute, -8px auto auto -12px);
 		//@include transform(translateX(-50%));
 		@include size(100px);
+		pointer-events:none;
 	}
 	div{
 		color:#fff;

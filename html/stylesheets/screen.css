@@ -218,8 +218,9 @@ header .logo {
   left: -12px;
   width: 100px;
   height: 100px;
+  pointer-events: none;
 }
-/* line 22, ../../build/sass/screen.scss */
+/* line 23, ../../build/sass/screen.scss */
 header div {
   color: #fff;
   position: absolute;
@@ -233,26 +234,26 @@ header div {
   -o-transform: translateY(-50%);
   transform: translateY(-50%);
 }
-/* line 26, ../../build/sass/screen.scss */
+/* line 27, ../../build/sass/screen.scss */
 header div h2 {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 5px;
 }
-/* line 31, ../../build/sass/screen.scss */
+/* line 32, ../../build/sass/screen.scss */
 header div time {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-style: italic;
   font-size: 18px;
 }
-/* line 35, ../../build/sass/screen.scss */
+/* line 36, ../../build/sass/screen.scss */
 header div time sup {
   font-size: .7em;
   position: relative;
   top: -.5em;
 }
 
-/* line 45, ../../build/sass/screen.scss */
+/* line 46, ../../build/sass/screen.scss */
 .gallery ul img {
   width: 100%;
 }
@@ -321,7 +322,7 @@ header div time sup {
     transform: rotate(360deg);
   }
 }
-/* line 59, ../../build/sass/screen.scss */
+/* line 60, ../../build/sass/screen.scss */
 .upload-photo {
   background-color: #002E73;
   position: fixed;
@@ -331,7 +332,7 @@ header div time sup {
   left: 0px;
   height: 45px;
 }
-/* line 63, ../../build/sass/screen.scss */
+/* line 64, ../../build/sass/screen.scss */
 .upload-photo button {
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -340,7 +341,7 @@ header div time sup {
   height: 60px;
   background-color: #e97770;
 }
-/* line 69, ../../build/sass/screen.scss */
+/* line 70, ../../build/sass/screen.scss */
 .upload-photo svg {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   opacity: 0;
@@ -351,11 +352,11 @@ header div time sup {
   left: -4px;
   padding: 4px;
 }
-/* line 76, ../../build/sass/screen.scss */
+/* line 77, ../../build/sass/screen.scss */
 .upload-photo svg use {
   fill: #fff;
 }
-/* line 80, ../../build/sass/screen.scss */
+/* line 81, ../../build/sass/screen.scss */
 .upload-photo .icon-camera {
   top: 4px;
   width: 45px;
@@ -363,24 +364,24 @@ header div time sup {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 85, ../../build/sass/screen.scss */
+/* line 86, ../../build/sass/screen.scss */
 .upload-photo .icon-spinner {
   -webkit-animation: spinBaby 1s linear infinite;
   -moz-animation: spinBaby 1s linear infinite;
   animation: spinBaby 1s linear infinite;
 }
-/* line 88, ../../build/sass/screen.scss */
+/* line 89, ../../build/sass/screen.scss */
 .upload-photo .upload.loading {
   pointer-events: none;
 }
-/* line 90, ../../build/sass/screen.scss */
+/* line 91, ../../build/sass/screen.scss */
 .upload-photo .upload.loading .icon-camera {
   width: 0px;
   height: 0px;
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
 }
-/* line 94, ../../build/sass/screen.scss */
+/* line 95, ../../build/sass/screen.scss */
 .upload-photo .upload.loading .icon-spinner {
   width: 45px;
   height: 45px;
@@ -388,12 +389,12 @@ header div time sup {
   opacity: 1;
 }
 
-/* line 101, ../../build/sass/screen.scss */
+/* line 102, ../../build/sass/screen.scss */
 .upload-photo-form {
   display: none;
 }
 
-/* line 105, ../../build/sass/screen.scss */
+/* line 106, ../../build/sass/screen.scss */
 .new-photos {
   width: 100%;
   height: 0px;
@@ -420,13 +421,13 @@ header div time sup {
 .new-photos:after {
   clear: both;
 }
-/* line 118, ../../build/sass/screen.scss */
+/* line 119, ../../build/sass/screen.scss */
 .new-photos.active {
   height: 40px;
   padding: 12px;
 }
 
-/* line 124, ../../build/sass/screen.scss */
+/* line 125, ../../build/sass/screen.scss */
 #photos {
   width: 100%;
   max-width: 600px;

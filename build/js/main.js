@@ -15,7 +15,7 @@ $(function() {
             },
             error: function(jqXHR, textStatus, errorThrown){
                 //if fails      
-                console.log(textStatus);
+                alert(textStatus + "\n" + errorThrown);
             }
         });
     });
