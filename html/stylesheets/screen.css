@@ -200,7 +200,7 @@ body {
 
 /* line 10, ../../build/sass/screen.scss */
 header {
-  background-color: #002E73;
+  background-color: #1a134c;
   height: 80px;
   position: relative;
   display: block;
@@ -324,7 +324,7 @@ header div time sup {
 }
 /* line 60, ../../build/sass/screen.scss */
 .upload-photo {
-  background-color: #002E73;
+  background-color: #1a134c;
   position: fixed;
   top: auto;
   right: 0px;
