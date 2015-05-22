@@ -4,9 +4,9 @@
 	<ul id="photos">
         {% for photo in craft.entries.section('photos').find() %}
             {% if photo.eventPhotoLink %}
-                <li><img src="{{photo.eventPhotoLink}}"></li>
+                <li><img data-original="{{photo.eventPhotoLink}}" src="/img/loader.gif"></li>
             {% elseif photo.eventPhoto.first() %}
-                <li><img src="{{photo.eventPhoto.first().getUrl()}}"></li>
+                <li><img data-original="{{photo.eventPhoto.first().getUrl()}}" src="/img/loader.gif"></li>
             {% endif %}
         {% endfor %}
     </ul>
