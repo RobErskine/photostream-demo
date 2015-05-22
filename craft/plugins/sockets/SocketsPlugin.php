@@ -100,7 +100,6 @@ class SocketsPlugin extends BasePlugin
                 break;
             }
             $image->setImageOrientation(\Imagick::ORIENTATION_TOPLEFT);
-            var_dump($asset->getFolder()); die;
             $image->writeImage('/var/www/html/event-photos/' . $asset->filename);
         });
     }
