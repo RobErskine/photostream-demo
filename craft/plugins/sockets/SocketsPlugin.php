@@ -83,6 +83,25 @@ class SocketsPlugin extends BasePlugin
             $emitter = new Emitter($redis);
             $emitter->emit('photo', $asset->getUrl());
             $redis->close();
+
+            $image = new \Imagick($asset->getUrl());
+            $orientation = $image->getImageOrientation();
+            switch($orientation) {
+                case \Imagick::ORIENTATION_BOTTOMRIGHT:
+                    $image->rotateimage("#000", 180); // rotate 180 degrees
+                break;
+
+                case \Imagick::ORIENTATION_RIGHTTOP:
+                    $image->rotateimage("#000", 90); // rotate 90 degrees CW
+                break;
+
+                case \Imagick::ORIENTATION_LEFTBOTTOM:
+                    $image->rotateimage("#000", -90); // rotate 90 degrees CCW
+                break;
+            }
+            $image->setImageOrientation(\Imagick::ORIENTATION_TOPLEFT);
+            var_dump($asset->getFolder()); die;
+            $image->writeImage('/var/www/html/event-photos/' . $asset->filename);
         });
     }
 }

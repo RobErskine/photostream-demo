@@ -10,12 +10,13 @@
 return array(
     '*' => array(
         'omitScriptNameInUrls' => true,
+        'rotateImagesOnUploadByExifData' => false
     ),
     '.dev' => array(
         'devMode' => true,
         'environmentVariables' => array(
-            'siteUrl'        => 'http://photostream-demo.personal.dev/',
-            'fileSystemPath' => '/Users/roberskine/Sites/personal/photostream-demo/html/',
+            'siteUrl'        => 'http://wedding.dev/',
+            'fileSystemPath' => '/Users/mike/Projects/wedding/html',
         )
     )
 );

@@ -148,9 +148,8 @@ class ImagesService extends BaseApplicationComponent
 			if (craft()->config->get('rotateImagesOnUploadByExifData'))
 			{
 				$this->rotateImageByExifData($filePath);
+				$this->stripOrientationFromExifData($filePath);
 			}
-
-			$this->stripOrientationFromExifData($filePath);
 		}
 		catch (\Exception $e)
 		{
