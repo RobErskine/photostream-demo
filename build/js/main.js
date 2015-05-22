@@ -33,11 +33,12 @@ $(function() {
     });
 
     $(".upload-photo-form").on("submit", function(event) {
-        event.preventDefault(); 
+        event.preventDefault();
+        $(this).addClass('loading');
     });
 
-    var socket = io('http://45.55.245.33', {
-    //var socket = io('localhost:8000', {
+    //var socket = io('http://45.55.245.33', {
+    var socket = io('localhost:8000', {
         transports: ['websocket']
     });
 
@@ -49,7 +50,10 @@ $(function() {
         newPhotos.push(data);
     });
 
+    $('#photos img').lazyload();
+
     setInterval(function(){
+        // check for new photos
         if(newPhotos.length > 0){
             if(newPhotos.length === 1){
                 newPhotosBox.find('div').html('<p><strong>+</strong> 1 new photo</p>');
@@ -63,8 +67,8 @@ $(function() {
             newPhotosBox.removeClass('active');
         }
 
+        // scroll if above height
         var currentScroll = $(document).scrollTop();
-
         if ( currentScroll <= $('header').height() ){
             $('.new-photos').css({
                 'top': $('header').height()
@@ -75,10 +79,10 @@ $(function() {
                 'top': 0
             });
         }
-
     },100);
 
-    newPhotosBox.on('click',function(){
+    var loadNewImages = function(){
+        console.log('clicked');
         for(i=0;i<newPhotos.length;i++){
             $('#photos').prepend('<li><img src="' + newPhotos[i] + '"></li>');
         }
@@ -88,5 +92,13 @@ $(function() {
         $('html,body').animate({
             scrollTop: 0
         },333);
+    };
+
+    newPhotosBox.on('click',function(){
+        loadNewImages();
+    });
+
+    $('header').on('click',function(){
+        loadNewImages();
     });
 });

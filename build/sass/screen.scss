@@ -13,6 +13,7 @@ header{
 	position:relative;
 	display:block;
 	z-index:9;
+	pointer-events:none;
 	.logo{
 		@include border-radius(50%);
 		@include position(absolute, -8px auto auto -12px);
@@ -109,7 +110,7 @@ header{
 	background-color:#009A25;
 	color:#fff;
 	font-size:15px;
-	z-index:8;
+	z-index:10;
 	overflow:hidden;
 	padding:0 12px;
 	text-align: center;
