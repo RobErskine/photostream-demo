@@ -37,8 +37,8 @@ $(function() {
         $(this).addClass('loading');
     });
 
-    //var socket = io('http://45.55.245.33', {
-    var socket = io('localhost:8000', {
+    var socket = io('http://45.55.245.33', {
+    //var socket = io('localhost:8000', {
         transports: ['websocket']
     });
 
